@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
-    width: 1000,
-    height: 600,
+    width: 1920,
+    height: 1080,
     physics: {
         default: 'arcade',
         arcade: {
@@ -15,14 +15,32 @@ var config = {
         update: update
     }
 };
-function preload(){
-    this.load.image('fon', 'assets/fon.png' );
+var score = 0;
+var scoreText;
+var game = new Phaser.Game(config);
+
+function preload() {
+    // завантажимо асети
+    this.load.image('sky', 'assets/sky.png');
+    this.load.image('fon', 'assets/fon.png');
+    this.load.image('ground', 'assets/platform.png');
+    this.load.image('star', 'assets/star.png');
+    this.load.image('bomb', 'assets/bomb.png');
+    this.load.image('sk', 'assets/sk.png');
+
+    this.load.spritesheet('dude',
+        'assets/dude.png',
+        { frameWidth: 32, frameHeight: 48 }
+    );
 
 }
-function create(){
+var platforms;
+
+function create() {
+    //додамо ігровий світ
+    this.add.image(800, 400, 'sky');
     
-this.add.image(400, 300, 'fon');
 }
-function update(){
+ function update(){
 
-}
+ }
