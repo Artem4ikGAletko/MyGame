@@ -27,6 +27,7 @@ function preload() {
     this.load.image('sk', 'assets/sk.png');
     this.load.image('BigP', 'assets/BigP.png');
     
+    
 
 
 
@@ -35,9 +36,9 @@ function preload() {
         { frameWidth: 32, frameHeight: 48 }
     );
 
-    this.load.spritesheet('bad',
-        'assets/bad.png',
-        { frameWidth: 32, frameHeight: 48 }
+    this.load.spritesheet('BB',
+        'assets/BB.png',
+        { frameWidth: 45, frameHeight: 28 }
     );
 
 
@@ -87,6 +88,14 @@ function create() {
         repeat: -1
     });
     cursors = this.input.keyboard.createCursorKeys();
+
+    //ворог
+    BB = this.physics.add.sprite(200, 450, 'BB');
+
+    BB.setBounce(0.2);
+    BB.setCollideWorldBounds(true);
+    this.physics.add.collider(BB, platforms);
+    this.physics.add.collider(BB, Bigplatforms);
 
 
 
