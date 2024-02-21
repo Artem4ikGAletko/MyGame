@@ -45,6 +45,8 @@ function preload() {
 }
 var platforms;
 var Bigplatforms;
+var BB1;
+
 
 function create() {
     //додамо ігровий світ
@@ -93,6 +95,10 @@ function create() {
     });
     cursors = this.input.keyboard.createCursorKeys();
 
+    BB1 = this.physics.add.group();
+    this.physics.add.collider(BB1, platforms);
+
+this.physics.add.collider(player, BB1, hitBomb, null, this);
    
 
 }
@@ -122,6 +128,13 @@ function create() {
     {
         player.setVelocityY(-330);
     }
+
+    var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+    var bomb = BB1.create(x, 16, 'BB');
+    bomb.setBounce(1);
+    bomb.setCollideWorldBounds(true);
+    bomb.setVelocity(Phaser.Math.Between(-200, 200), 10)
    
 
  
@@ -129,6 +142,15 @@ function create() {
  
 }
 
+function hitBomb(player, bomb) {
+    this.physics.pause();
+
+    player.setTint(0xff0000);
+
+    player.anims.play('turn');
+
+    gameOver = true;
+}
 
 
 
