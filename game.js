@@ -27,6 +27,8 @@ function preload() {
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.image('sk', 'assets/sk.png');
+    this.load.image('BigP', 'assets/BigP.png');
+
 
     this.load.spritesheet('dude',
         'assets/dude.png',
@@ -35,11 +37,21 @@ function preload() {
 
 }
 var platforms;
+var Bigplatforms;
 
 function create() {
     //додамо ігровий світ
-    this.add.image(800, 400, 'sky');
+    this.add.image(1000, 400, 'sky');
+
+    // додамо платформи
+    platforms = this.physics.add.staticGroup();
+
+    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
     
+
+//Великі Платформи
+    Bigplatforms= this.physics.add.staticGroup();
+    Bigplatforms.create(400, 568, 'BigP').setScale(2).refreshBody();
 }
  function update(){
 
