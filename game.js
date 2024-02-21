@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
     width: 1440,
-    height: 700,
+    height: 900,
     physics: {
         default: 'arcade',
         arcade: {
@@ -59,9 +59,13 @@ function create() {
 
 //Великі Платформи
     Bigplatforms= this.physics.add.staticGroup();
-    Bigplatforms.create(400, 568, 'BigP').setScale(2).refreshBody();
+    Bigplatforms.create(400, 850, 'BigP').setScale(2).refreshBody();
+    Bigplatforms.create(800, 850, 'BigP').setScale(2).refreshBody();
+    Bigplatforms.create(700, 523, 'BigP').setScale(0.5).refreshBody();
+    Bigplatforms.create(1020, 523, 'BigP').setScale(0.5).refreshBody();
+    Bigplatforms.create(1000, 523, 'BigP').setScale(0.5).refreshBody();
 //Гравець
-    player = this.physics.add.sprite(100, 450, 'dude');
+    player = this.physics.add.sprite(800, 450, 'dude');
     
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
@@ -89,17 +93,8 @@ function create() {
     });
     cursors = this.input.keyboard.createCursorKeys();
 
-    //ворог
-    BB = this.physics.add.sprite(200, 450, 'BB');
+   
 
-    BB.setBounce(0.2);
-    BB.setCollideWorldBounds(true);
-    this.physics.add.collider(BB, platforms);
-    this.physics.add.collider(BB, Bigplatforms);
-
-
-
-    
 }
  function update(){
     //керування
@@ -127,5 +122,14 @@ function create() {
     {
         player.setVelocityY(-330);
     }
+   
 
- }
+ 
+
+ 
+}
+
+
+
+
+
