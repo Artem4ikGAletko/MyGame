@@ -88,7 +88,7 @@ function create() {
     });
     cursors = this.input.keyboard.createCursorKeys();
 // ворог
-bad = this.physics.add.sprite(100, 450, 'bad');
+bad = this.physics.add.sprite(150, 450, 'bad');
 
 bad.setBounce(0.2);
 bad.setCollideWorldBounds(true);
@@ -102,6 +102,19 @@ this.anims.create({
     repeat: -1
 });
 
+this.anims.create({
+    key: 'turn',
+    frames: [ { key: 'bad', frame: 4 } ],
+    frameRate: 20
+});
+
+this.anims.create({
+    key: 'right',
+    frames: this.anims.generateFrameNumbers('bad', { start: 5, end: 8 }),
+    frameRate: 10,
+    repeat: -1
+});
+cursors = this.input.keyboard.createCursorKeys();
 
 
 
@@ -129,8 +142,32 @@ else
 }
 
 if (cursors.up.isDown && player.body.touching.down)
+// djhju
 {
     player.setVelocityY(-330);
 }
-    
- }
+
+if (cursors.left.isDown)
+{
+    player.setVelocityX(-160);
+
+    player.anims.play('left', true);
+}
+else if (cursors.right.isDown)
+{
+    player.setVelocityX(160);
+
+    player.anims.play('right', true);
+}
+else
+{
+    player.setVelocityX(0);
+
+    player.anims.play('turn');
+}
+
+if (cursors.up.isDown && player.body.touching.down)
+{
+    player.setVelocityY(-330);
+}
+}
