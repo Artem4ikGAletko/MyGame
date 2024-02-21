@@ -26,12 +26,20 @@ function preload() {
     this.load.image('ground', 'assets/platform.png');
     this.load.image('sk', 'assets/sk.png');
     this.load.image('BigP', 'assets/BigP.png');
+    
+
 
 
     this.load.spritesheet('dude',
         'assets/dude.png',
         { frameWidth: 32, frameHeight: 48 }
     );
+
+    this.load.spritesheet('bad',
+        'assets/bad.png',
+        { frameWidth: 32, frameHeight: 48 }
+    );
+
 
 }
 var platforms;
@@ -57,7 +65,8 @@ function create() {
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
     this.physics.add.collider(player, platforms);
-    
+    this.physics.add.collider(player, Bigplatforms);
+    //Анімації
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
@@ -78,9 +87,28 @@ function create() {
         repeat: -1
     });
     cursors = this.input.keyboard.createCursorKeys();
+// ворог
+bad = this.physics.add.sprite(100, 450, 'bad');
+
+bad.setBounce(0.2);
+bad.setCollideWorldBounds(true);
+this.physics.add.collider(bad, platforms);
+this.physics.add.collider(bad, Bigplatforms);
+//Анімації
+this.anims.create({
+    key: 'left',
+    frames: this.anims.generateFrameNumbers('bad', { start: 0, end: 3 }),
+    frameRate: 10,
+    repeat: -1
+});
+
+
+
+
     
 }
  function update(){
+    //керування
     if (cursors.left.isDown)
 {
     player.setVelocityX(-160);
