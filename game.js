@@ -63,7 +63,7 @@ function create() {
     platforms.create(150, 568, 'ground').setScale(1).refreshBody();
     platforms.create(400, 725, 'ground').setScale(2).refreshBody();
     platforms.create(550, 750, 'ground')
-    platforms.create(750, 150, 'ground')
+    platforms.create(750, 750, 'ground')
 
 
 //Великі Платформи
@@ -73,8 +73,23 @@ function create() {
     Bigplatforms.create(700, 523, 'BigP').setScale(0.5).refreshBody();
     Bigplatforms.create(1020, 523, 'BigP').setScale(0.5).refreshBody();
     Bigplatforms.create(1000, 523, 'BigP').setScale(0.5).refreshBody();
-
-    
+    Bigplatforms.create(200, 700, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(200, 300, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(300, 450, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(1200, 700, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(1400, 300, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(1300, 450, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(800, 700, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(1400, 370, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(900, 320, 'BigP').setScale(0.5).refreshBody();
+    Bigplatforms.create(700, 300, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(1300, 1450, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(1200, 700, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(600, 900, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(1300, 1450, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(800, 1700, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(1400, 1300, 'BigP').setScale(0.25).refreshBody();
+    Bigplatforms.create(900, 1300, 'BigP').setScale(0.5).refreshBody();
 
 //Гравець
     player = this.physics.add.sprite(800, 450, 'dude');
@@ -124,7 +139,7 @@ foon.setBounce(0.2);
     this.physics.add.collider(foon, Bigplatforms);
  
 
-
+    scoreText = this.add.text(825, 606, 'Натисніть стрілочку в низ!!!!', { fontSize: '32px', fill: '#000' })
 }
 
 
