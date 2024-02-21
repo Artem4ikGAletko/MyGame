@@ -26,10 +26,14 @@ function preload() {
     this.load.image('ground', 'assets/platform.png');
     this.load.image('sk', 'assets/sk.png');
     this.load.image('BigP', 'assets/BigP.png');
-    
+    this.load.image('RAm', 'assets/rampage.png');
+   
     
 
-
+    this.load.spritesheet('foon',
+    'assets/foon.png',
+    { frameWidth: 200, frameHeight: 188 }
+);
 
     this.load.spritesheet('dude',
         'assets/dude.png',
@@ -51,6 +55,7 @@ var BB1;
 function create() {
     //додамо ігровий світ
     this.add.image(900, 350, 'sky');
+    
 
     // додамо платформи
     platforms = this.physics.add.staticGroup();
@@ -58,6 +63,8 @@ function create() {
     platforms.create(150, 568, 'ground').setScale(1).refreshBody();
     platforms.create(400, 725, 'ground').setScale(2).refreshBody();
     platforms.create(550, 750, 'ground')
+    platforms.create(750, 150, 'ground')
+
 
 //Великі Платформи
     Bigplatforms= this.physics.add.staticGroup();
@@ -66,6 +73,9 @@ function create() {
     Bigplatforms.create(700, 523, 'BigP').setScale(0.5).refreshBody();
     Bigplatforms.create(1020, 523, 'BigP').setScale(0.5).refreshBody();
     Bigplatforms.create(1000, 523, 'BigP').setScale(0.5).refreshBody();
+
+    
+
 //Гравець
     player = this.physics.add.sprite(800, 450, 'dude');
     
@@ -73,6 +83,7 @@ function create() {
     player.setCollideWorldBounds(true);
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(player, Bigplatforms);
+    
     //Анімації
     this.anims.create({
         key: 'left',
@@ -99,18 +110,33 @@ function create() {
     this.physics.add.collider(BB1, platforms);
 
 this.physics.add.collider(player, BB1, hitBomb, null, this);
+this.anims.create({
+    key: 'gog',
+    frames: this.anims.generateFrameNumbers('foon', { start: 0, end: 3 }),
+    frameRate: 10,
+    repeat: -1
+});
 
-scoreText = this.add.text(300, 225,'score: 0', { fontSize: '50px', fill: '#000' });
-   
+foon = this.physics.add.sprite(800, 450, 'foon');
+foon.setBounce(0.2);
+    foon.setCollideWorldBounds(true);
+    this.physics.add.collider(foon, platforms);
+    this.physics.add.collider(foon, Bigplatforms);
+ 
 
 
 }
+
+
 
 
 var bomb; // Додайте змінну для зберігання посилання на bomb
 
 function update() {
     // Керування гравцем
+    if(cursors.left.isDown){
+foon.anims.play('gog', true);
+    }
     if (cursors.left.isDown) {
         player.setVelocityX(-160);
         player.anims.play('left', true);
@@ -135,16 +161,9 @@ function update() {
         this.physics.add.collider(bomb, platforms);
     this.physics.add.collider(bomb, Bigplatforms);
     }
+    
+    
 }
-
-
-   
-   
-
- 
-
- 
-
 
 function hitBomb(player, bomb) {
     this.physics.pause();
