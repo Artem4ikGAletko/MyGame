@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
-    width: 1920,
-    height: 1080,
+    width: 1440,
+    height: 700,
     physics: {
         default: 'arcade',
         arcade: {
@@ -24,8 +24,6 @@ function preload() {
     this.load.image('sky', 'assets/sky.png');
     this.load.image('fon', 'assets/fon.png');
     this.load.image('ground', 'assets/platform.png');
-    this.load.image('star', 'assets/star.png');
-    this.load.image('bomb', 'assets/bomb.png');
     this.load.image('sk', 'assets/sk.png');
     this.load.image('BigP', 'assets/BigP.png');
 
@@ -41,18 +39,48 @@ var Bigplatforms;
 
 function create() {
     //додамо ігровий світ
-    this.add.image(1000, 400, 'sky');
+    this.add.image(900, 350, 'sky');
 
     // додамо платформи
     platforms = this.physics.add.staticGroup();
 
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(150, 568, 'ground').setScale(1).refreshBody();
+    platforms.create(1000, 725, 'ground')
     
 
 //Великі Платформи
     Bigplatforms= this.physics.add.staticGroup();
     Bigplatforms.create(400, 568, 'BigP').setScale(2).refreshBody();
+//Гравець
+    player = this.physics.add.sprite(100, 450, 'dude');
+
+    player.setBounce(0.2);
+    player.setCollideWorldBounds(true);
+    this.physics.add.collider(player, platforms);
+    
+    this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+    });
+    
+    this.anims.create({
+        key: 'turn',
+        frames: [ { key: 'dude', frame: 4 } ],
+        frameRate: 20
+    });
+    
+    this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    
 }
  function update(){
-
+    
+    
  }
