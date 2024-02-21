@@ -102,45 +102,39 @@ this.physics.add.collider(player, BB1, hitBomb, null, this);
    
 
 }
- function update(){
-    //керування
-    cursors = this.input.keyboard.createCursorKeys();
-    if (cursors.left.isDown)
-    {
+var bomb; // Додайте змінну для зберігання посилання на bomb
+
+function update() {
+    // Керування гравцем
+    if (cursors.left.isDown) {
         player.setVelocityX(-160);
-    
         player.anims.play('left', true);
-    }
-    else if (cursors.right.isDown)
-    {
+    } else if (cursors.right.isDown) {
         player.setVelocityX(160);
-    
         player.anims.play('right', true);
-    }
-    else
-    {
+    } else {
         player.setVelocityX(0);
-    
         player.anims.play('turn');
     }
     
-    if (cursors.up.isDown && player.body.touching.down)
-    {
-        player.setVelocityY(-330);
+    // Створення bomb (BB1) лише при стрибку гравця
+    if (cursors.up.isDown && player.body.touching.down && !bomb) { // Перевірка, чи немає bomb
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+        bomb = BB1.create(x, 16, 'BB');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 10);
     }
+}
 
-    var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
-    var bomb = BB1.create(x, 16, 'BB');
-    bomb.setBounce(1);
-    bomb.setCollideWorldBounds(true);
-    bomb.setVelocity(Phaser.Math.Between(-200, 200), 10)
+   
    
 
  
 
  
-}
+
 
 function hitBomb(player, bomb) {
     this.physics.pause();
