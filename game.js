@@ -56,8 +56,8 @@ function create() {
     platforms = this.physics.add.staticGroup();
 
     platforms.create(150, 568, 'ground').setScale(1).refreshBody();
-    platforms.create(1000, 725, 'ground')
-    
+    platforms.create(400, 725, 'ground').setScale(2).refreshBody();
+    platforms.create(550, 750, 'ground')
 
 //Великі Платформи
     Bigplatforms= this.physics.add.staticGroup();
@@ -99,11 +99,14 @@ function create() {
     this.physics.add.collider(BB1, platforms);
 
 this.physics.add.collider(player, BB1, hitBomb, null, this);
+
+scoreText = this.add.text(300, 225,'score: 0', { fontSize: '50px', fill: '#000' });
    
+
 
 }
 
-var coin;
+
 var bomb; // Додайте змінну для зберігання посилання на bomb
 
 function update() {
