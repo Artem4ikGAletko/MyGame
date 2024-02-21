@@ -102,6 +102,8 @@ this.physics.add.collider(player, BB1, hitBomb, null, this);
    
 
 }
+
+var coin;
 var bomb; // Додайте змінну для зберігання посилання на bomb
 
 function update() {
@@ -116,14 +118,19 @@ function update() {
         player.setVelocityX(0);
         player.anims.play('turn');
     }
+    if (cursors.up.isDown && player.body.touching.down) {
+        player.setVelocityY(-330);
+    }
     
-    // Створення bomb (BB1) лише при стрибку гравця
-    if (cursors.up.isDown && player.body.touching.down && !bomb) { // Перевірка, чи немає bomb
+    
+    if (cursors.down.isDown && player.body.touching.down) { // Перевірка, чи немає bomb
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
         bomb = BB1.create(x, 16, 'BB');
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 10);
+        this.physics.add.collider(bomb, platforms);
+    this.physics.add.collider(bomb, Bigplatforms);
     }
 }
 
