@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
-    width: 1440,
-    height: 900,
+    width: 1920,
+    height: 1080,
     physics: {
         default: 'arcade',
         arcade: {
@@ -18,6 +18,7 @@ var config = {
 var score = 0;
 var scoreText;
 var game = new Phaser.Game(config);
+
 
 function preload() {
     // завантажимо асети
@@ -54,22 +55,22 @@ var BB1;
 
 function create() {
     //додамо ігровий світ
-    this.add.image(900, 350, 'sky');
+    this.add.image(950, 570, 'sky');
     
 
     // додамо платформи
     platforms = this.physics.add.staticGroup();
 
-    platforms.create(150, 568, 'ground').setScale(1).refreshBody();
-    platforms.create(400, 725, 'ground').setScale(2).refreshBody();
-    platforms.create(550, 750, 'ground')
-    platforms.create(750, 750, 'ground')
+    platforms.create(150, 908, 'ground').setScale(1).refreshBody();
+    platforms.create(400, 900, 'ground').setScale(2).refreshBody();
+    platforms.create(550, 920, 'ground')
+    platforms.create(750, 920, 'ground')
 
 
 //Великі Платформи
     Bigplatforms= this.physics.add.staticGroup();
-    Bigplatforms.create(400, 850, 'BigP').setScale(2).refreshBody();
-    Bigplatforms.create(800, 850, 'BigP').setScale(2).refreshBody();
+    Bigplatforms.create(600, 1000, 'BigP').setScale(2).refreshBody();
+    Bigplatforms.create(1400, 1000, 'BigP').setScale(2).refreshBody();
     Bigplatforms.create(700, 523, 'BigP').setScale(0.5).refreshBody();
     Bigplatforms.create(1020, 523, 'BigP').setScale(0.5).refreshBody();
     Bigplatforms.create(1000, 523, 'BigP').setScale(0.5).refreshBody();
@@ -140,6 +141,7 @@ foon.setBounce(0.2);
  
 
     scoreText = this.add.text(825, 606, 'Натисніть стрілочку в низ!!!!', { fontSize: '32px', fill: '#000' })
+    
 }
 
 
