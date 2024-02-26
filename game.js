@@ -18,6 +18,8 @@ var config = {
 var score = 0;
 var scoreText;
 var game = new Phaser.Game(config);
+var timerText;
+var timer;
 
 function preload() {
     // завантажимо асети
@@ -91,6 +93,9 @@ function create() {
     Bigplatforms.create(1400, 1300, 'BigP').setScale(0.25).refreshBody();
     Bigplatforms.create(900, 1300, 'BigP').setScale(0.5).refreshBody();
 
+    
+//
+timer = 0;
 //Гравець
     player = this.physics.add.sprite(800, 450, 'dude');
     
@@ -140,6 +145,8 @@ foon.setBounce(0.2);
  
 
     scoreText = this.add.text(825, 606, 'Натисніть стрілочку в низ!!!!', { fontSize: '32px', fill: '#000' })
+
+    
 }
 
 
@@ -148,6 +155,7 @@ foon.setBounce(0.2);
 var bomb; // Додайте змінну для зберігання посилання на bomb
 
 function update() {
+
     // Керування гравцем
     if(cursors.left.isDown){
 foon.anims.play('gog', true);
@@ -176,7 +184,13 @@ foon.anims.play('gog', true);
         this.physics.add.collider(bomb, platforms);
     this.physics.add.collider(bomb, Bigplatforms);
     }
-    
+    timer += 1; // Додати час, що пройшов від останнього кадру
+
+    // Перевірка, чи пройшла секунда
+    if (timer >= 1000) { // 1000 мілісекунд = 1 секунда
+        timerText.setText('Час: ' + (Math.round(timer / 1000)));
+        timer = 0; // Скинути таймер
+    }
     
 }
 
