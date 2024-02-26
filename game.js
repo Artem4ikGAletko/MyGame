@@ -51,6 +51,7 @@ function preload() {
 var platforms;
 var Bigplatforms;
 var BB1;
+var timerText;
 
 
 function create() {
@@ -141,6 +142,9 @@ foon.setBounce(0.2);
  
 
     scoreText = this.add.text(825, 606, 'Натисніть стрілочку в низ!!!!', { fontSize: '32px', fill: '#000' })
+
+
+    timerText = this.add.text(32, 32, 'Час: 0', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' });
     
 }
 
@@ -179,7 +183,9 @@ foon.anims.play('gog', true);
     this.physics.add.collider(bomb, Bigplatforms);
     }
     
-    
+   
+    timerText.setText('Час: ' + (Math.round(time / 1000)));
+
 }
 
 function hitBomb(player, bomb) {
